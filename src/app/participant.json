@@ -1,0 +1,26 @@
+{
+    "id": "3451d53a0e814ec68ea3aba331673009_I_654865168355837547_a5dd6f15-c881-4182-9760-8966cbf89e8e",
+    "host": true,
+    "coHost": false,
+    "spaceModerator": false,
+    "email": "codigo_centro_doc02@tecsup.edu.pe",
+    "displayName": "Bootcamp CodiGo",
+    "invitee": false,
+    "muted": false,
+    "state": "end",
+    "joinedTime": "2025-05-23T23:54:36Z",
+    "leftTime": "2025-05-24T03:52:08Z",
+    "siteUrl": "tecsup.webex.com",
+    "meetingId": "3451d53a0e814ec68ea3aba331673009_I_654865168355837547",
+    "hostEmail": "codigo_centro_doc02@tecsup.edu.pe",
+    "meetingStartTime": "2025-05-23T23:53:47Z",
+    "devices": [
+        {
+            "correlationId": "7da9728d-62d2-4334-83ab-4c6ac9b237a7",
+            "deviceType": "mac",
+            "joinedTime": "2025-05-23T23:54:36Z",
+            "leftTime": "2025-05-24T03:52:08Z",
+            "durationSecond": 14252
+        }
+    ]
+}

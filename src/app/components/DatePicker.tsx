@@ -1,8 +1,25 @@
 // `https://webexapis.com/v1/meetings?meetingType=scheduledMeeting&from=${from}&to=${to}`,
+"use client"
 
-export default function DatePicker() {
+interface DatePickerProps {
+  setDate: (date :string) => void;
+}
+
+export default function DatePicker({setDate}: DatePickerProps) {
+  // const { register, setValue } = useForm({
+  //   defaultValues: {
+  //     date: ""
+  //   }});
+
+  const handleChange = (e: any) => {
+    e.preventDefault();
+    setDate(e.target.value.split("/").join("-"))
+    // alert(e.target.value.split("/").join("-")+"abcd");
+  }
+
   return (
-    <div className="w-full max-w-[330px] px-6 py-7 border border-gray-300 rounded-2xl">
+    <>
+    {/* <div className="w-full max-w-[330px] px-6 py-7 border border-gray-300 rounded-2xl">
       <div className="flex items-center gap-2 mb-2">
         <div
           className="flex items-center gap-8 border border-gray-300 w-full justify-between rounded-xl py-0.5 px-0.5 text-sm font-medium text-gray-900 ">
@@ -291,7 +308,47 @@ export default function DatePicker() {
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> */}
+      {/* <LabelForm label='Indica la fecha de la reserva' htmlFor='date' error={errors.date?.message}> */}
+      <div className="">
+        <div className="">
+          <label htmlFor="fecha" className="">
+            Etiqueta
+          </label>
+        </div>
+        <div className="">
 
+          {/* <InputText
+        {...register('date')}
+        hasError={!!errors.date?.message}
+        type='date'
+        fullWidth
+        max={currentMaxDate}
+        min={currentDate}
+        placeholder='Ingresa la fecha de la reserva'
+      /> */}
+
+          <div className="">
+            {/* {leftIcon && <span className={cx('input-text__icon', 'input-text__icon--left')}>{leftIcon}</span>} */}
+            <input
+              // ref={""}
+              // {...restProps}
+              // {...register('date')}
+              id="fecha"
+              type="date"
+              disabled={false}
+              className=""
+              onChange={handleChange}
+            />
+            <span className="">rightIcon</span>
+          </div>
+        </div>
+        <div className="">helperText</div>
+        <div role='alert' className="">
+          IconAlertCircle error
+        </div>
+      </div>      
+    {/* </LabelForm> */}
+  </>
   )
 }
