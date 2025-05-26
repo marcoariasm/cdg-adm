@@ -1,23 +1,22 @@
 "use client";
 
-import { Meeting } from "./types";
 import DatePicker from "./components/DatePicker";
-import DateHeader from "./components/DateHeader";
 import ClassesList from "./components/ClassesList";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import InputTkn from "./components/InputTkn";
 
 export default function Home() {
   const [date, setDate] = useState("");
+  const [tkn, setTkn] = useState();
 
   const handleDate = (date: string) => {
-    // alert(date);
     setDate(date);
   }
   return (
     <>
-      <DatePicker setDate={handleDate}/>
-      {/* <DateHeader /> */}
-      <ClassesList date={date}/>
+      <InputTkn setTkn={setTkn} />
+      <DatePicker setDate={handleDate} />
+      <ClassesList date={date} tkn={tkn!} />
     </>
   );
 }

@@ -7,9 +7,10 @@ import ClassItem from "./ClassItem";
 const token = process.env.NEXT_PUBLIC_WEBEX_ACCESS_TOKEN;
 interface ClassesListProps {
   date: string;
+  tkn: string;
 }
 
-export default function ClassesList({ date }: ClassesListProps) {
+export default function ClassesList({ date, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3ZjgtN2ZmODkwZDMzMjBlZmU2NzY5Y2UtYWQ1_PF84_254fbc18-dec9-45c0-9f09-40ba5d1f2c06"}: ClassesListProps) {
   const [classes, setClasses] = useState<Recording[]>([]);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function ClassesList({ date }: ClassesListProps) {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${tkn}`,
           },
         }
       );
@@ -43,7 +44,7 @@ export default function ClassesList({ date }: ClassesListProps) {
     <ul className="flex flex-wrap gap-4">
       {classes &&
         classes.map((item: Recording) => (
-          <ClassItem key={item.meetingId} item={item} />
+          <ClassItem key={item.meetingId} item={item} tkn={tkn} />
         ))}
     </ul>
   );

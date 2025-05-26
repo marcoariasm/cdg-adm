@@ -10,9 +10,10 @@ const token = process.env.NEXT_PUBLIC_WEBEX_ACCESS_TOKEN;
 
 interface ClassItemProps {
   item: Recording;
+  tkn: string;
 }
 
-export default function ClassItem({ item }: ClassItemProps) {
+export default function ClassItem({ item, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3ZjgtN2ZmODkwZDMzMjBlZmU2NzY5Y2UtYWQ1_PF84_254fbc18-dec9-45c0-9f09-40ba5d1f2c06" }: ClassItemProps) {
   const [cl, setCl] = useState<Attendant[]>();
   const [open, setOpen] = useState(false);
   const [participants, setParticipants] = useState<Attendant[]>([]);
@@ -26,7 +27,7 @@ export default function ClassItem({ item }: ClassItemProps) {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${tkn}`,
           },
         }
       );
