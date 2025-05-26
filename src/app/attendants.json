@@ -1,0 +1,9 @@
+{
+  "id": "id",
+  "nombre": "nombre",
+  "correo": "correo",
+  "joinedTime": "a.joinedTime.toISOString()",
+  "leftTime": "a.leftTime.toISOString()",
+  "duracionAsistenciaSeg": 140,
+  "porcentajeAsistencia": "30%"
+}
