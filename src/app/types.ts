@@ -97,6 +97,7 @@ export interface Device {
 export interface Attendant {
     id: string;
     nombre: string,
+    apellido: string,
     correo: string,
     joinedTime: Date,
     leftTime: Date,

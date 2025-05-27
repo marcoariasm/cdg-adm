@@ -22,12 +22,12 @@ export default function ClassItem({ item, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3ZjgtN
     setOpen(!open);
     const getClassDetails = async () => {
       const response = await fetch(
-        `https://webexapis.com/v1/meetingParticipants?meetingId=${id}`,
+        `https://webexapis.com/v1/meetingParticipants?meetingId=${id}&max=50`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${tkn}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -46,7 +46,7 @@ export default function ClassItem({ item, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3ZjgtN
 
   return (
     <>
-      <div className="max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+      <div className="w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
         <div className="relative">
           {/* <img
           src="https://placehold.co/400x300"
@@ -100,6 +100,7 @@ export default function ClassItem({ item, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3ZjgtN
               <thead>
                 <tr>
                   <th className="text-left">#</th>
+                  <th className="text-left">Apellido</th>
                   <th className="text-left">Nombre</th>
                   <th className="text-left">Permanencia</th>
                   <th className="text-left">Rango</th>
@@ -110,6 +111,7 @@ export default function ClassItem({ item, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3ZjgtN
                   cl.map((part, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
+                      <td>{part.apellido}</td>
                       <td>{part.nombre}</td>
                       <td>{part.porcentajeAsistencia}</td>
                       <td>

@@ -28,7 +28,7 @@ export default function ClassesList({ date, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3Zjg
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${tkn}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
