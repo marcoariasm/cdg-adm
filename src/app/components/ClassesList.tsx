@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Recording } from "../types";
 import ClassItem from "./ClassItem";
+import { addDays, format, parseISO } from "date-fns";
 
 const token = process.env.NEXT_PUBLIC_WEBEX_ACCESS_TOKEN;
 interface ClassesListProps {
@@ -15,11 +16,17 @@ export default function ClassesList({ date, tkn="MjBiZDIzMjUtMjU0Mi00MTNlLWE3Zjg
 
   useEffect(() => {
     const getClassDetails = async () => {
-      const from = `${date}T00:00:00Z`;
-      // const to = `${new Date(date).setDate(
-      //   new Date(date).getDate() + 1
-      // )}T04:59:59Z`;
-      const to = `${date}T23:59:59Z`;
+      // const from = `${date}T00:00:00Z`;
+      // const to = `${date}T23:59:59Z`;
+
+      // console.log("date", date);
+      const anterior = addDays(parseISO(date), 1);
+      const resultado = format(anterior, "yyyy-MM-dd");
+      console.log("from_day", resultado);
+      // const from = ${resultado}T19:00:00Z;
+      const from = `${date}T05:00:00Z`;
+      const to = `${resultado}T04:59:59Z`;
+
       const response = await fetch(
         // `https://webexapis.com/v1/meetings?sessionTypes=meeting&from=${date}T00:00:00Z&to=${date}T23:59:59Z`,
         // "https://webexapis.com/v1/meetings?sessionTypes=meeting?max=100",
