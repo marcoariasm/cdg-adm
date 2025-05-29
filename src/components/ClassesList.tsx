@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Recording } from "../types";
+import { Recording } from "../app/types";
 import ClassItem from "./ClassItem";
 import { useToken } from "@/context/TokenContext";
 import { getRecordings } from "@/services/classes";

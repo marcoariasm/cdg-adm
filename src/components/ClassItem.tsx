@@ -5,8 +5,8 @@ import { useToken } from "@/context/TokenContext";
 import { getAttendants } from "@/services/classes";
 import ClassInfo from "./ClassInfo";
 import BadgeRango from "./BadgeRango";
-import { Attendant, Recording } from "../types";
-import ProcessParticipants from "../../utils/participants";
+import { Attendant, Recording } from "../app/types";
+import ProcessParticipants from "../utils/participants";
 // import AttendanceGraph from "./AttendanceGraph";
 interface ClassItemProps {
   item: Recording;
@@ -100,12 +100,16 @@ export default function ClassItem({ item, type }: ClassItemProps) {
                 )}
                 {participants.filter(
                   (p) => +p.porcentajeAsistencia.slice(0, -1) < 60
-                ).length === 0 && <p className="text-lg font-bold text-gray-900">✅ Sin permanencia baja</p>}
+                ).length === 0 && (
+                  <p className="text-lg font-bold text-gray-900">
+                    ✅ Sin permanencia baja
+                  </p>
+                )}
               </>
             </div>
 
             {/* <div className="flex items-center"> */}
-              {/* <AttendanceGraph datos={attendants!} /> */}
+            {/* <AttendanceGraph datos={attendants!} /> */}
             {/* </div> */}
           </div>
 

@@ -1,11 +1,11 @@
 "use client";
 
-import DatePicker from "./components/DatePicker";
-import ClassesList from "./components/ClassesList";
+import DatePicker from "@/components/DatePicker";
+import ClassesList from "@/components/ClassesList";
 import React, { useState } from "react";
-import DateHeader from "./components/DateHeader";
+import DateHeader from "@/components/DateHeader";
 import { TokenProvider } from "@/context/TokenContext";
-import TokenInputs from "./components/TokenInput";
+import TokenInputs from "@/components/TokenInput";
 
 export default function Home() {
   const [date, setDate] = useState("");

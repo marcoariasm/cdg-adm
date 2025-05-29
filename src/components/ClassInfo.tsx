@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Recording } from "../types";
+import { Recording } from "../app/types";
 
 interface ClassInfoProps {
   recording: Recording;

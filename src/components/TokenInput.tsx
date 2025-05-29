@@ -6,11 +6,11 @@ export default function TokenInputs() {
   const [mensaje, setMensaje] = useState("");
 
   const handleSubmit = () => {
-    if (tokenBootcamp.trim() && tokenELearning.trim()) {
+    if (tokenBootcamp.trim() || tokenELearning.trim()) {
       setBloqueado(true);
       setMensaje("✅ Tokens ingresados con éxito");
-    } else {
-      setMensaje("⚠️ Por favor ingresa ambos tokens.");
+      // } else {
+      //   setMensaje("⚠️ Por favor ingresa ambos tokens.");
     }
   };
   const { tokenBootcamp, tokenELearning, setTokenBootcamp, setTokenELearning } =
