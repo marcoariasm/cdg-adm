@@ -89,7 +89,7 @@ function processParticipants(json, type) {
       // parseFloat(b.porcentajeAsistencia) - parseFloat(a.porcentajeAsistencia)
     ).filter((r) => {return( r.apellido !== "Virtual")});
 
-  console.log(resultado);
+  // console.log(resultado);
   return resultado;
 }
 

@@ -36,7 +36,7 @@ export default function TokenInputs() {
                 type="password"
                 value={tokenBootcamp}
                 onChange={(e) => setTokenBootcamp(e.target.value)}
-                className="w-96 border px-3 py-1"
+                className="w-80 border px-3 py-1"
                 placeholder="Token para Bootcamps"
                 disabled={bloqueado}
               />
@@ -53,7 +53,7 @@ export default function TokenInputs() {
                 type="password"
                 value={tokenELearning}
                 onChange={(e) => setTokenELearning(e.target.value)}
-                className="w-96 border px-3 py-1"
+                className="w-80 border px-3 py-1"
                 placeholder="Token para Elearning"
                 disabled={bloqueado}
               />

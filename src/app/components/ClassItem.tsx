@@ -30,7 +30,7 @@ export default function ClassItem({ item, type }: ClassItemProps) {
   useEffect(() => {
     getAttendants(item.meetingId, accessToken).then((resp) => {
       setParticipants(ProcessParticipants(resp));
-      console.log(ProcessParticipants(resp))
+      // console.log(ProcessParticipants(resp))
       // setAttendant(participants.length);
       // setRiskAttendant(
       //   participants.filter((p) => +p.porcentajeAsistencia.slice(0, -1) < 60)
@@ -53,7 +53,7 @@ export default function ClassItem({ item, type }: ClassItemProps) {
 
   return (
     <>
-      <div className="max-w-xl w-full bg-gray-100 rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+      <div className="max-w-xl w-full bg-gray-100 rounded-3xl shadow-4xl overflow-hidden hover:shadow-xl transition-all">
         <div className="relative">
           <span
             className={`absolute top-2 right-2 ${
@@ -84,11 +84,11 @@ export default function ClassItem({ item, type }: ClassItemProps) {
               <p className="text-lg font-bold text-gray-900">
                 🍎 {participants.length} asistentes
               </p>
-              <p className="text-lg font-bold text-red-500">
+              <>
                 {participants.filter(
                   (p) => +p.porcentajeAsistencia.slice(0, -1) < 60
                 ).length > 0 && (
-                  <>
+                  <p className="text-lg font-bold text-red-500">
                     🚨{" "}
                     {
                       participants.filter(
@@ -96,17 +96,17 @@ export default function ClassItem({ item, type }: ClassItemProps) {
                       ).length
                     }{" "}
                     alumno(s) permanencia &lt; 60%
-                  </>
+                  </p>
                 )}
                 {participants.filter(
                   (p) => +p.porcentajeAsistencia.slice(0, -1) < 60
-                ).length === 0 && <>✅ Sin permanencia baja</>}
-              </p>
+                ).length === 0 && <p className="text-lg font-bold text-gray-900">✅ Sin permanencia baja</p>}
+              </>
             </div>
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center"> */}
               {/* <AttendanceGraph datos={attendants!} /> */}
-            </div>
+            {/* </div> */}
           </div>
 
           <ClassInfo recording={item} />
