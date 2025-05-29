@@ -18,6 +18,13 @@ export default function TokenInputs() {
 
   return (
     <>
+      <a
+        href="https://developer.webex.com/meeting/docs/getting-started"
+        className="underline text-blue-600 mb-3 text-sm"
+        target="_blank"
+      >
+        Link: Obtener tokens
+      </a>
       <div className="flex flex-col md:flex-row space-y-4 space-x-3 mb-2">
         <div>
           {!bloqueado && (
@@ -65,6 +72,7 @@ export default function TokenInputs() {
       >
         {bloqueado ? "Tokens ingresados" : "Ingresar tokens"}
       </button>
+      <br />
 
       {mensaje && <p className="mt-2 text-sm text-green-700">{mensaje}</p>}
     </>
