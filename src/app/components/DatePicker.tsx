@@ -13,8 +13,8 @@ export default function DatePicker({ setDate }: DatePickerProps) {
 
   return (
     <>
-      <div className="flex py-4">
-        <label htmlFor="fecha" className="p-3">
+      <div className="py-4">
+        <label htmlFor="fecha" className="mb-2">
           Fecha:
         </label>
         <div className="border border-gray-300 rounded-lg flex items-center justify-between px-3 py-2 w-fit">

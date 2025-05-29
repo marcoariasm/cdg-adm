@@ -30,6 +30,7 @@ export default function ClassItem({ item, type }: ClassItemProps) {
   useEffect(() => {
     getAttendants(item.meetingId, accessToken).then((resp) => {
       setParticipants(ProcessParticipants(resp));
+      console.log(ProcessParticipants(resp))
       // setAttendant(participants.length);
       // setRiskAttendant(
       //   participants.filter((p) => +p.porcentajeAsistencia.slice(0, -1) < 60)
@@ -74,7 +75,7 @@ export default function ClassItem({ item, type }: ClassItemProps) {
           <div className="flex justify-between items-center">
             <div className="space-y-1">
               <p className="text-lg font-bold text-gray-900">
-                ⚪️ Inicio clase: {new Date(item.timeRecorded).toLocaleString()}
+                🟢 Inicio clase: {new Date(item.timeRecorded).toLocaleString()}
               </p>
               <p className="text-lg font-bold text-gray-900">
                 ⏱️ Duración: {(item.durationSeconds / 3600).toFixed(0)} horas{" "}

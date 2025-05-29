@@ -25,7 +25,7 @@ export default function TokenInputs() {
       >
         Link: Obtener tokens
       </a>
-      <div className="flex flex-col md:flex-row space-y-4 space-x-3 mb-2">
+      <div className="flex flex-col md:flex-row space-y-3 space-x-3 mb-2">
         <div>
           {!bloqueado && (
             <>
@@ -64,7 +64,7 @@ export default function TokenInputs() {
       <button
         onClick={handleSubmit}
         disabled={bloqueado}
-        className={`px-4 py-2 text-white font-semibold rounded ${
+        className={`px-4 py-1 text-white font-semibold rounded ${
           bloqueado
             ? "bg-gray-400 cursor-not-allowed"
             : "bg-blue-600 hover:bg-blue-700"

@@ -19,7 +19,7 @@ function processParticipants(json, type) {
   const asistentes = {};
 
   participantes.forEach((p) => {
-    if (p.displayName === "Bootcamp CodiGo") return;
+    if (p.displayName === "Bootcamp CodiGo" || p.displayName === "Virtual Tecsup") return;
     const email = p.displayName;
 
     if (!asistentes[email]) {
@@ -76,8 +76,8 @@ function processParticipants(json, type) {
   });
 
   // 4. Ordenar alfabéticamente por primer apellido
+  
   resultado
-    .filter((r) => r.apellido !== "Virtual")
     .sort(
       (a, b) => {
         try {
@@ -87,7 +87,7 @@ function processParticipants(json, type) {
         }
       }
       // parseFloat(b.porcentajeAsistencia) - parseFloat(a.porcentajeAsistencia)
-    );
+    ).filter((r) => {return( r.apellido !== "Virtual")});
 
   console.log(resultado);
   return resultado;
