@@ -18,32 +18,40 @@ export default function TokenInputs() {
 
   return (
     <>
-      <div className="flex space-y-4 space-x-3 mb-2">
+      <div className="flex flex-col md:flex-row space-y-4 space-x-3 mb-2">
         <div>
-          <label className="block font-semibold mb-1">
-            Token de Bootcamps (codigo)
-          </label>
-          <input
-            type="password"
-            value={tokenBootcamp}
-            onChange={(e) => setTokenBootcamp(e.target.value)}
-            className="w-96 border px-3 py-1"
-            placeholder="Token para Bootcamps"
-            disabled={bloqueado}
-          />
+          {!bloqueado && (
+            <>
+              <label className="block font-semibold mb-1">
+                Token de Bootcamps (codigo)
+              </label>
+              <input
+                type="password"
+                value={tokenBootcamp}
+                onChange={(e) => setTokenBootcamp(e.target.value)}
+                className="w-96 border px-3 py-1"
+                placeholder="Token para Bootcamps"
+                disabled={bloqueado}
+              />
+            </>
+          )}
         </div>
         <div>
-          <label className="block font-semibold mb-1">
-            Token de Elearning (tecsup)
-          </label>
-          <input
-            type="password"
-            value={tokenELearning}
-            onChange={(e) => setTokenELearning(e.target.value)}
-            className="w-96 border px-3 py-1"
-            placeholder="Token para Elearning"
-            disabled={bloqueado}
-          />
+          {!bloqueado && (
+            <>
+              <label className="block font-semibold mb-1">
+                Token de Elearning (tecsup)
+              </label>
+              <input
+                type="password"
+                value={tokenELearning}
+                onChange={(e) => setTokenELearning(e.target.value)}
+                className="w-96 border px-3 py-1"
+                placeholder="Token para Elearning"
+                disabled={bloqueado}
+              />
+            </>
+          )}
         </div>
       </div>
       <button
@@ -55,7 +63,7 @@ export default function TokenInputs() {
             : "bg-blue-600 hover:bg-blue-700"
         }`}
       >
-        {bloqueado ? "Tokens bloqueados" : "Ingresar tokens"}
+        {bloqueado ? "Tokens ingresados" : "Ingresar tokens"}
       </button>
 
       {mensaje && <p className="mt-2 text-sm text-green-700">{mensaje}</p>}

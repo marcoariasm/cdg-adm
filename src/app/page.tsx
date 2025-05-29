@@ -17,7 +17,7 @@ export default function Home() {
     <TokenProvider>
       <div className="p-5">
         <TokenInputs />
-        {date && <DatePicker setDate={handleDate} />}
+        <DatePicker setDate={handleDate} />
         <DateHeader date={date} />
         <ClassesList date={date} type="Bootcamp" />
         <ClassesList date={date} type="ELearning" />

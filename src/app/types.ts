@@ -126,6 +126,7 @@ export interface Recording {
     shareToMe: boolean;
     serviceType: string;
     status: string;
+    participants: Participant[];
 }
 
 export interface TemporaryDirectDownloadLinks {

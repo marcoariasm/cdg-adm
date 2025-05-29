@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Recording } from "../types";
+import { ShareIcon } from "@heroicons/react/16/solid";
 
 interface ClassInfoProps {
   recording: Recording;
@@ -14,7 +15,7 @@ export default function ClassInfo({ recording }: ClassInfoProps) {
 ### ${recording.topic}
 
 📅 Fecha: ${new Date(recording.timeRecorded).toLocaleString()}
-▶️ Enlace: [${recording.playbackUrl}](${recording.playbackUrl})
+▶️ Enlace: [Clase grabada](${recording.playbackUrl})
 🔑 Contraseña: ${recording.password}
     `.trim();
 
@@ -25,17 +26,22 @@ export default function ClassInfo({ recording }: ClassInfoProps) {
   };
 
   return (
-    <div className="border rounded-lg p-4 shadow-sm border-gray-300">
+    <div className="border rounded-lg p-4 shadow-sm border-gray-700 relative">
       <h3 className="text-lg font-semibold mb-2 text-gray-500">
-        {recording.topic}
+        📣 {recording.topic} 📣
       </h3>
       <p className="text-sm text-gray-500">
-        Grabado el: {new Date(recording.timeRecorded).toLocaleString()}
+        📅 Fecha: {new Date(recording.timeRecorded).toLocaleString()}
       </p>
       <p className="text-sm text-gray-500">
-        Duración: {(recording.durationSeconds / 60).toFixed(1)} minutos
+        ▶️ Enlace: <span className="underline">Clase grabada</span>
       </p>
-      <p className="text-sm text-gray-500">Password: {recording.password}</p>
+      {/* <p className="text-sm text-gray-500">
+        Duración: {(recording.durationSeconds / 60).toFixed(1)} minutos
+      </p> */}
+      <p className="text-sm text-gray-500">
+        🔑 Contraseña: {recording.password}
+      </p>
       <p className="text-sm text-blue-500 underline mb-2">
         <a
           href={recording.playbackUrl}
@@ -45,13 +51,14 @@ export default function ClassInfo({ recording }: ClassInfoProps) {
           Ver grabación
         </a>
       </p>
-
-      <button
-        onClick={copiarAlPortapapeles}
-        className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
-      >
-        {copiado ? "Copiado ✅" : "Copiar al portapapeles"}
-      </button>
+      <div className="right-3 bottom-2 absolute">
+        <button
+          onClick={copiarAlPortapapeles}
+          className="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-700 text-sm"
+        >
+          {copiado ? "Copiado ✅" : "Copiar al portapapeles"}
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,10 +1,12 @@
-function processParticipants(json) {
+function processParticipants(json, type) {
   const participantes = json;
+  const email =
+    type === "Bootcamp"
+      ? "codigo_centro_doc02@tecsup.edu.pe"
+      : "tecsup_centro_doc02@tecsup.edu.pe";
 
   // 1. Determinar tiempo total de clase (host o el mayor leftTime)
-  const host = participantes.find(
-    (p) => p.email === "codigo_centro_doc02@tecsup.edu.pe"
-  );
+  const host = participantes.find((p) => p.email === email);
   const startTime = new Date(
     host?.meetingStartTime || participantes[0].joinedTime
   );
@@ -31,6 +33,10 @@ function processParticipants(json) {
         duracionTotal: (new Date(p.leftTime) - new Date(p.joinedTime)) / 1000,
       };
     } else {
+      // const deviceId = p.devices?.[0]?.correlationId || "";
+      // if (asistentes[email].dispositivos.has(deviceId)) return; // evitar contar dos veces el mismo dispositivo
+
+      // asistentes[email].dispositivos.add(deviceId);
       // Actualizar joinedTime si es anterior
       if (new Date(p.joinedTime) < asistentes[email].joinedTime) {
         asistentes[email].joinedTime = new Date(p.joinedTime);
@@ -52,7 +58,7 @@ function processParticipants(json) {
     // const porcentajeNumerico = porcentaje.toFixed(1);
     let rango = "";
 
-    if (porcentaje < 31) rango = "Baja";
+    if (porcentaje < 60) rango = "Baja";
     else if (porcentaje < 81) rango = "Media";
     else rango = "Alta";
 
@@ -71,7 +77,9 @@ function processParticipants(json) {
 
   // 4. Ordenar alfabéticamente por primer apellido
   resultado
-    // .filter((r) => r.correo !== "codigo_centro_doc02@tecsup.edu.pe")
+    .filter((r) => {
+      r.apellido !== "Virtual";
+    })
     .sort(
       (a, b) => {
         try {
