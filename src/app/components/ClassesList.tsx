@@ -28,7 +28,7 @@ export default function ClassesList({ date, type }: ClassesListProps) {
     <ul className="flex flex-wrap gap-4 my-5">
       {classes &&
         classes.map((item: Recording, index) => (
-          <ClassItem key={index} item={item} type={type} date={date} />
+          <ClassItem key={index} item={item} type={type} />
         ))}
       {!classes.length && (
         <li className="w-full text-gray-500 my-5">

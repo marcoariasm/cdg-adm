@@ -2,29 +2,28 @@
 
 import React, { useEffect, useState } from "react";
 import { useToken } from "@/context/TokenContext";
-import { getAttendants, obtenerAsistencias } from "@/services/classes";
+import { getAttendants } from "@/services/classes";
 import ClassInfo from "./ClassInfo";
 import BadgeRango from "./BadgeRango";
 import { Attendant, Recording } from "../types";
 import ProcessParticipants from "../../utils/participants";
-import AttendanceGraph from "./AttendanceGraph";
+// import AttendanceGraph from "./AttendanceGraph";
 interface ClassItemProps {
   item: Recording;
   type?: string;
-  date: string;
 }
 
-export default function ClassItem({ item, type, date }: ClassItemProps) {
+export default function ClassItem({ item, type }: ClassItemProps) {
   const [open, setOpen] = useState(false);
   const [participants, setParticipants] = useState<Attendant[]>([]);
-  const [attendants, setAttendants] =
-    useState<{ fecha: string; asistentes: number }[]>();
+  // const [attendants, setAttendants] =
+  //   useState<{ fecha: string; asistentes: number }[]>();
   // const [riskAttendant, setRiskAttendant] = useState<number>();
 
   const tokens = useToken();
   const accessToken = tokens[`token${type}`];
 
-  const seeDetails = (id: string) => {
+  const seeDetails = () => {
     setOpen(!open);
   };
 
@@ -37,18 +36,18 @@ export default function ClassItem({ item, type, date }: ClassItemProps) {
       //     .length
       // );
     });
-  }, [item]);
+  }, [item, accessToken]);
 
-  let datosAsistencia: any[] = [];
-  const graficarAsistencias = async () => {
-    return await obtenerAsistencias(accessToken, date, item.meetingId);
-  };
+  // let datosAsistencia: any[] = [];
+  // const graficarAsistencias = async () => {
+  //   return await obtenerAsistencias(accessToken, date, item.meetingId);
+  // };
 
-  graficarAsistencias().then((a) => {
-    datosAsistencia = a;
-    setAttendants(a);
-    console.log("a", a);
-  });
+  // graficarAsistencias().then((a) => {
+  //   datosAsistencia = a;
+  //   setAttendants(a);
+  //   console.log("a", a);
+  // });
   // console.log("Linea de asistencia", datosAsistencia);
 
   return (
@@ -113,7 +112,7 @@ export default function ClassItem({ item, type, date }: ClassItemProps) {
 
           <button
             className="w-full bg-gray-600 hover:bg-gray-800 text-white font-medium py-3 rounded-lg transition-colors"
-            onClick={() => seeDetails(item.meetingId)}
+            onClick={() => seeDetails()}
           >
             Ver asistencia
           </button>

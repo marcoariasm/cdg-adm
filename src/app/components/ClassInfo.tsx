@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Recording } from "../types";
-import { ShareIcon } from "@heroicons/react/16/solid";
 
 interface ClassInfoProps {
   recording: Recording;

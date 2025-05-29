@@ -77,9 +77,7 @@ function processParticipants(json, type) {
 
   // 4. Ordenar alfabéticamente por primer apellido
   resultado
-    .filter((r) => {
-      r.apellido !== "Virtual";
-    })
+    .filter((r) => r.apellido !== "Virtual")
     .sort(
       (a, b) => {
         try {
