@@ -6,9 +6,6 @@ import ProcessParticipants from "../../utils/participants";
 import ClassInfo from "./ClassInfo";
 import BadgeRango from "./BadgeRango";
 import { useToken } from "@/context/TokenContext";
-
-const token = process.env.NEXT_PUBLIC_WEBEX_ACCESS_TOKEN;
-
 interface ClassItemProps {
   item: Recording;
   type?: string;
@@ -36,7 +33,7 @@ export default function ClassItem({ item, type }: ClassItemProps) {
         }
       );
       const data = await response.json();
-      // console.log(data.items);
+
       return data.items;
     };
 
@@ -44,7 +41,6 @@ export default function ClassItem({ item, type }: ClassItemProps) {
       const participants = ProcessParticipants(det);
       setParticipants(participants);
       setCl(participants);
-      // console.log(ProcessParticipants(det));
     });
   };
 
@@ -74,7 +70,6 @@ export default function ClassItem({ item, type }: ClassItemProps) {
               <p className="text-2xl font-bold text-gray-900">
                 {participants.length} asistentes
               </p>
-              {/* <p className="text-sm text-gray-500 line-through">$69.99</p> */}
             </div>
 
             <div className="flex items-center gap-1">

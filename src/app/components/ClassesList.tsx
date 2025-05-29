@@ -18,12 +18,12 @@ export default function ClassesList({ date, type }: ClassesListProps) {
 
   useEffect(() => {
     const getClassDetails = async () => {
-      // console.log("date", date);
       const anterior = addDays(parseISO(date), 1);
       const resultado = format(anterior, "yyyy-MM-dd");
-      // console.log("from_day", resultado);
+
       const from = `${date}T05:00:00Z`;
       const to = `${resultado}T04:59:59Z`;
+
       const response = await fetch(
         `https://webexapis.com/v1/recordings?from=${from}&to=${to}`,
         {

@@ -8,7 +8,6 @@ interface ClassInfoProps {
 export default function ClassInfo({ recording }: ClassInfoProps) {
   const [copiado, setCopiado] = useState(false);
 
-  // ⏱️ Duración: ${(recording.durationSeconds / 60).toFixed(1)} minutos
   const copiarAlPortapapeles = () => {
     const texto = `
 :loudspeaker: @here :loudspeaker:

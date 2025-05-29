@@ -30,9 +30,6 @@ export default function DatePicker({ setDate }: DatePickerProps) {
             <CalendarDaysIcon className="size-6 text-gray-300" />
           </span>
         </div>
-        {/* <div className="mb-4 mt-2">
-          Selecciona una fecha para mostrar las grabaciones
-        </div> */}
       </div>
     </>
   );
