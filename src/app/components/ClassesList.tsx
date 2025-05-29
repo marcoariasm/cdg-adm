@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Recording } from "../types";
 import ClassItem from "./ClassItem";
 import { addDays, format, parseISO } from "date-fns";
@@ -40,7 +40,7 @@ export default function ClassesList({ date, type }: ClassesListProps) {
       return data.items;
     };
     getClassDetails().then((cl) => setClasses(cl));
-  }, [date]);
+  }, [date, accessToken]);
 
   return (
     <ul className="flex flex-wrap gap-4 my-5">
