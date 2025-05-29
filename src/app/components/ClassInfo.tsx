@@ -55,7 +55,7 @@ export default function ClassInfo({ recording }: ClassInfoProps) {
           onClick={copiarAlPortapapeles}
           className="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-700 text-sm"
         >
-          {copiado ? "Copiado ✅" : "Copiar al portapapeles"}
+          {copiado ? "Copiado ✅" : "🔗 Copiar"}
         </button>
       </div>
     </div>
