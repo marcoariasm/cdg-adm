@@ -26,7 +26,7 @@ export default function ClassItem({ item, type }: ClassItemProps) {
     setOpen(!open);
     const getClassDetails = async () => {
       const response = await fetch(
-        `https://webexapis.com/v1/meetingParticipants?meetingId=${id}`,
+        `https://webexapis.com/v1/meetingParticipants?meetingId=${id}&max=50`,
         {
           method: "GET",
           headers: {

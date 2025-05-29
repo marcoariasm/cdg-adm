@@ -69,7 +69,7 @@ function processParticipants(json) {
     };
   });
 
-  // 4. Ordenar de mayor a menor por porcentaje
+  // 4. Ordenar alfabéticamente por primer apellido
   resultado
     // .filter((r) => r.correo !== "codigo_centro_doc02@tecsup.edu.pe")
     .sort(
