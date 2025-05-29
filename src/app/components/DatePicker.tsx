@@ -6,7 +6,7 @@ interface DatePickerProps {
 }
 
 export default function DatePicker({ setDate }: DatePickerProps) {
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setDate(e.target.value.split("/").join("-"));
   };
