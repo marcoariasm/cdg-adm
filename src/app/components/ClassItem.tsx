@@ -5,17 +5,22 @@ import { Attendant, Recording } from "../types";
 import ProcessParticipants from "../../utils/participants";
 import ClassInfo from "./ClassInfo";
 import BadgeRango from "./BadgeRango";
+import { useToken } from "@/context/TokenContext";
 
 const token = process.env.NEXT_PUBLIC_WEBEX_ACCESS_TOKEN;
 
 interface ClassItemProps {
   item: Recording;
+  type?: string;
 }
 
-export default function ClassItem({ item }: ClassItemProps) {
+export default function ClassItem({ item, type }: ClassItemProps) {
   const [cl, setCl] = useState<Attendant[]>();
   const [open, setOpen] = useState(false);
   const [participants, setParticipants] = useState<Attendant[]>([]);
+
+  const tokens = useToken();
+  const accessToken = tokens[`token${type}`];
 
   const seeDetails = (id: string) => {
     setOpen(!open);
@@ -26,12 +31,12 @@ export default function ClassItem({ item }: ClassItemProps) {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
       const data = await response.json();
-      console.log(data.items);
+      // console.log(data.items);
       return data.items;
     };
 
@@ -39,28 +44,28 @@ export default function ClassItem({ item }: ClassItemProps) {
       const participants = ProcessParticipants(det);
       setParticipants(participants);
       setCl(participants);
-      console.log(ProcessParticipants(det));
+      // console.log(ProcessParticipants(det));
     });
   };
 
   return (
     <>
-      <div className="max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+      <div className="max-w-xl w-full bg-gray-300 rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
         <div className="relative">
-          {/* <img
-          src="https://placehold.co/400x300"
-          alt="Product"
-          className="w-full h-52 object-cover"
-        /> */}
-          <span className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-            {/* {item.hostDisplayName.split(" ")[0]} */}
-            displayName
+          <span
+            className={`absolute top-2 right-2 ${
+              type === "Bootcamp" ? "bg-red-500" : "bg-violet-500"
+            } text-white px-3 py-1 rounded-full text-xs font-medium`}
+          >
+            {type}
           </span>
         </div>
 
         <div className="p-5 space-y-4">
           <div>
-            <h3 className="text-xl font-bold text-gray-900">{item.topic}</h3>
+            <h3 className="text-xl font-bold text-gray-900 pr-16">
+              {item.topic}
+            </h3>
             <p className="text-gray-500 mt-1">{}</p>
           </div>
 
@@ -79,7 +84,7 @@ export default function ClassItem({ item }: ClassItemProps) {
                     (p) => +p.porcentajeAsistencia.slice(0, -1) < 60
                   ).length
                 }{" "}
-                alumno(s) riesgo abandono (permanencia menor al 60%)
+                alumno(s) permanencia &lt; 60% clase
               </div>
             </div>
           </div>
@@ -94,14 +99,13 @@ export default function ClassItem({ item }: ClassItemProps) {
           </button>
 
           {open && cl && cl.length > 0 && (
-            // <div className="p-5 space-y-4">
             <table className="w-full text-sm text-gray-600">
               <thead>
                 <tr>
                   <th className="text-left">#</th>
+                  <th className="text-left">Apellido</th>
                   <th className="text-left">Nombre</th>
-                  <th className="text-left">Permanencia</th>
-                  <th className="text-left">Rango</th>
+                  <th className="text-center">Permanencia</th>
                 </tr>
               </thead>
               <tbody>
@@ -109,16 +113,18 @@ export default function ClassItem({ item }: ClassItemProps) {
                   cl.map((part, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
+                      <td>{part.apellido}</td>
                       <td>{part.nombre}</td>
-                      <td>{part.porcentajeAsistencia}</td>
-                      <td>
+                      <td className="flex justify-evenly">
+                        <span className="flex-end">
+                          {part.porcentajeAsistencia}
+                        </span>
                         <BadgeRango rango={part.rangoAsistencia} />
                       </td>
                     </tr>
                   ))}
               </tbody>
             </table>
-            // </div>
           )}
         </div>
       </div>

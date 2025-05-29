@@ -23,7 +23,8 @@ function processParticipants(json) {
     if (!asistentes[email]) {
       asistentes[email] = {
         id: p.id,
-        nombre: p.displayName,
+        nombre: p.displayName.split(" ")[0],
+        apellido: p.displayName.split(" ")[1],
         correo: email,
         joinedTime: new Date(p.joinedTime),
         leftTime: new Date(p.leftTime),
@@ -58,6 +59,7 @@ function processParticipants(json) {
     return {
       id: a.id,
       nombre: a.nombre,
+      apellido: a.apellido,
       correo: a.correo,
       joinedTime: a.joinedTime.toISOString(),
       leftTime: a.leftTime.toISOString(),
@@ -71,8 +73,14 @@ function processParticipants(json) {
   resultado
     // .filter((r) => r.correo !== "codigo_centro_doc02@tecsup.edu.pe")
     .sort(
-      (a, b) =>
-        parseFloat(b.porcentajeAsistencia) - parseFloat(a.porcentajeAsistencia)
+      (a, b) => {
+        try {
+          return a.apellido.localeCompare(b.apellido);
+        } catch (error) {
+          return error;
+        }
+      }
+      // parseFloat(b.porcentajeAsistencia) - parseFloat(a.porcentajeAsistencia)
     );
 
   console.log(resultado);

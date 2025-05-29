@@ -1,17 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Recording } from "../types";
 import ClassItem from "./ClassItem";
-import { addDays, format, parseISO, subDays } from "date-fns";
+import { addDays, format, parseISO } from "date-fns";
+import { useToken } from "@/context/TokenContext";
 
-const token = process.env.NEXT_PUBLIC_WEBEX_ACCESS_TOKEN;
+// const token = process.env.NEXT_PUBLIC_WEBEX_ACCESS_TOKEN;
 interface ClassesListProps {
   date: string;
+  type?: string;
 }
 
-export default function ClassesList({ date }: ClassesListProps) {
+export default function ClassesList({ date, type }: ClassesListProps) {
   const [classes, setClasses] = useState<Recording[]>([]);
+
+  const tokens = useToken();
+  const accessToken = tokens[`token${type}`];
 
   useEffect(() => {
     const getClassDetails = async () => {
@@ -31,7 +36,7 @@ export default function ClassesList({ date }: ClassesListProps) {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
@@ -44,10 +49,10 @@ export default function ClassesList({ date }: ClassesListProps) {
   }, [date]);
 
   return (
-    <ul className="flex flex-wrap gap-4">
+    <ul className="flex flex-wrap gap-4 my-5">
       {classes &&
         classes.map((item: Recording) => (
-          <ClassItem key={item.meetingId} item={item} />
+          <ClassItem key={item.meetingId} item={item} type={type} />
         ))}
     </ul>
   );

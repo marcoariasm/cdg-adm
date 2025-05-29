@@ -9,7 +9,9 @@ export default function BadgeRango({ rango }: { rango: string }) {
   }
 
   return (
-    <span className={`rounded-full text-[10px] font-medium ${colorClass}`}>
+    <span
+      className={`rounded-full text-[10px] font-medium text-center ${colorClass}`}
+    >
       {rango}
     </span>
   );
