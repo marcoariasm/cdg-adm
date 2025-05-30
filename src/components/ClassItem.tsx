@@ -75,7 +75,8 @@ export default function ClassItem({ item, type }: ClassItemProps) {
           <div className="flex justify-between items-center">
             <div className="space-y-1">
               <p className="text-lg font-bold text-gray-900">
-                🟢 Inicio clase: {new Date(item.timeRecorded).toLocaleString()}
+                🟢 Inicio grabación:{" "}
+                {new Date(item.timeRecorded).toLocaleString()}
               </p>
               <p className="text-lg font-bold text-gray-900">
                 ⏱️ Duración: {(item.durationSeconds / 3600).toFixed(0)} horas{" "}
@@ -126,7 +127,7 @@ export default function ClassItem({ item, type }: ClassItemProps) {
             <div className="transition-all duration-3000">
               <table
                 className="text-sm text-gray-600 min-w-full divide-y divide-gray-200 dark:divide-neutral-700"
-                style={{ height: "{{contentHeight}}px;" }}
+                style={{ height: "{{contentHeight}}px" }}
               >
                 <thead>
                   <tr>
