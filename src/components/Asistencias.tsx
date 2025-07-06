@@ -1,12 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { useToken } from '@/context/TokenContext';
 import { obtenerAsistenciasPorTopic } from '@/services/classes';
-
-import { Recording } from '../app/types';
-import ClassItem from './ClassItem';
 
 interface ClassesListProps {
   date: string;
@@ -22,8 +19,8 @@ export default function Asistencias({
   topic = "30-05",
 }: ClassesListProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [classes, setClasses] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  // const [setClasses] = useState<any[]>([]);
+  // const [setLoading] = useState(false);
 
   const tokens = useToken();
   const accessToken = tokens[`token${type}`];
@@ -36,11 +33,12 @@ export default function Asistencias({
         dateEnd,
         topic
       );
-      setClasses(data);
+      console.log(data);
+      // setClasses(data);
     } catch (error) {
       console.error("Error al obtener datos:", error);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
