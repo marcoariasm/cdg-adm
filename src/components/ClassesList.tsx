@@ -1,16 +1,26 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Recording } from "../app/types";
-import ClassItem from "./ClassItem";
-import { useToken } from "@/context/TokenContext";
-import { getRecordings } from "@/services/classes";
+import React, { useEffect, useState } from 'react';
+
+import { useToken } from '@/context/TokenContext';
+import { getRecordings, getRecordingsByRangeAndTopic } from '@/services/classes';
+
+import { Recording } from '../app/types';
+import ClassItem from './ClassItem';
+
 interface ClassesListProps {
   date: string;
+  dateEnd?: string;
   type?: string;
+  topic?: string;
 }
 
-export default function ClassesList({ date, type }: ClassesListProps) {
+export default function ClassesList({
+  date,
+  dateEnd = new Date().toString().split("T")[0],
+  type = "Bootcamp",
+  topic,
+}: ClassesListProps) {
   const [classes, setClasses] = useState<Recording[]>([]);
 
   const tokens = useToken();
@@ -18,11 +28,21 @@ export default function ClassesList({ date, type }: ClassesListProps) {
 
   useEffect(() => {
     if (!date || !accessToken) return;
-    getRecordings(accessToken, date).then((recordings) => {
-      if (!recordings) return;
-      setClasses(recordings);
-    });
-  }, [date, accessToken]);
+    if (dateEnd && topic) {
+      getRecordingsByRangeAndTopic(accessToken, date, dateEnd, topic).then(
+        (recording) => {
+          if (!recording) return;
+          console.log(recording);
+          setClasses(recording);
+        }
+      );
+    } else {
+      getRecordings(accessToken, date).then((recordings) => {
+        if (!recordings) return;
+        setClasses(recordings);
+      });
+    }
+  }, [date, dateEnd, topic, type, accessToken]);
 
   return (
     <ul className="flex flex-wrap gap-4 my-5">

@@ -1,26 +1,25 @@
 "use client";
 
-import DatePicker from "@/components/DatePicker";
-import ClassesList from "@/components/ClassesList";
-import React, { useState } from "react";
-import DateHeader from "@/components/DateHeader";
-import { TokenProvider } from "@/context/TokenContext";
-import TokenInputs from "@/components/TokenInput";
+import React, { useState } from 'react';
+
+import Search from '@/components/Search';
+import SearchMenu from '@/components/SearchMenu';
+import TokenInputs from '@/components/TokenInput';
+import { TokenProvider } from '@/context/TokenContext';
 
 export default function Home() {
-  const [date, setDate] = useState("");
+  const [search, setSearch] = useState<string>("");
 
-  const handleDate = (date: string) => {
-    setDate(date);
+  const handleSearch = (search: string) => {
+    setSearch(search);
   };
+
   return (
     <TokenProvider>
       <div className="p-5">
         <TokenInputs />
-        <DatePicker setDate={handleDate} />
-        <DateHeader date={date} />
-        <ClassesList date={date} type="Bootcamp" />
-        <ClassesList date={date} type="ELearning" />
+        <SearchMenu setSearch={handleSearch} />
+        {search && <Search search={search} />}
       </div>
     </TokenProvider>
   );

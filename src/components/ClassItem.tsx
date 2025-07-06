@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useToken } from "@/context/TokenContext";
-import { getAttendants } from "@/services/classes";
-import ClassInfo from "./ClassInfo";
-import BadgeRango from "./BadgeRango";
-import { Attendant, Recording } from "../app/types";
-import ProcessParticipants from "../utils/participants";
-// import AttendanceGraph from "./AttendanceGraph";
+import React, { useEffect, useState } from 'react';
+
+import { useToken } from '@/context/TokenContext';
+import { getAttendants } from '@/services/classes';
+
+import { Attendant, Recording } from '../app/types';
+import ProcessParticipants from '../utils/participants';
+import BadgeRango from './BadgeRango';
+import ClassInfo from './ClassInfo';
+
 interface ClassItemProps {
   item: Recording;
   type?: string;
@@ -16,9 +18,6 @@ interface ClassItemProps {
 export default function ClassItem({ item, type }: ClassItemProps) {
   const [open, setOpen] = useState(false);
   const [participants, setParticipants] = useState<Attendant[]>([]);
-  // const [attendants, setAttendants] =
-  //   useState<{ fecha: string; asistentes: number }[]>();
-  // const [riskAttendant, setRiskAttendant] = useState<number>();
 
   const tokens = useToken();
   const accessToken = tokens[`token${type}`];
@@ -30,26 +29,8 @@ export default function ClassItem({ item, type }: ClassItemProps) {
   useEffect(() => {
     getAttendants(item.meetingId, accessToken).then((resp) => {
       setParticipants(ProcessParticipants(resp));
-      // console.log(ProcessParticipants(resp))
-      // setAttendant(participants.length);
-      // setRiskAttendant(
-      //   participants.filter((p) => +p.porcentajeAsistencia.slice(0, -1) < 60)
-      //     .length
-      // );
     });
   }, [item, accessToken]);
-
-  // let datosAsistencia: any[] = [];
-  // const graficarAsistencias = async () => {
-  //   return await obtenerAsistencias(accessToken, date, item.meetingId);
-  // };
-
-  // graficarAsistencias().then((a) => {
-  //   datosAsistencia = a;
-  //   setAttendants(a);
-  //   console.log("a", a);
-  // });
-  // console.log("Linea de asistencia", datosAsistencia);
 
   return (
     <>
@@ -108,10 +89,6 @@ export default function ClassItem({ item, type }: ClassItemProps) {
                 )}
               </>
             </div>
-
-            {/* <div className="flex items-center"> */}
-            {/* <AttendanceGraph datos={attendants!} /> */}
-            {/* </div> */}
           </div>
 
           <ClassInfo recording={item} />
